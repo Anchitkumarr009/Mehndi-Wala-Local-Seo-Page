@@ -47,16 +47,21 @@ export async function generateMetadata({
   const { country, city, district, locality } = params;
   const isPreview = Boolean(searchParams?.preview);
 
-  const page = await prisma.localityPage.findUnique({
-    where: {
-      country_city_district_locality: {
-        country: country.toLowerCase(),
-        city: city.toLowerCase(),
-        district: district.toLowerCase(),
-        locality: locality.toLowerCase(),
+  let page = null;
+  try {
+    page = await prisma.localityPage.findUnique({
+      where: {
+        country_city_district_locality: {
+          country: country.toLowerCase(),
+          city: city.toLowerCase(),
+          district: district.toLowerCase(),
+          locality: locality.toLowerCase(),
+        },
       },
-    },
-  });
+    });
+  } catch (err) {
+    console.error("Error generating metadata for locality:", err);
+  }
 
   if (!page || (page.status !== "PUBLISHED" && !isPreview)) {
     return {
@@ -103,26 +108,31 @@ export default async function LocalityDetailPage({ params, searchParams }: PageP
   const { country, city, district, locality } = params;
   const isPreview = Boolean(searchParams?.preview);
 
-  const page = await prisma.localityPage.findUnique({
-    where: {
-      country_city_district_locality: {
-        country: country.toLowerCase(),
-        city: city.toLowerCase(),
-        district: district.toLowerCase(),
-        locality: locality.toLowerCase(),
-      },
-    },
-    include: {
-      faqs: {
-        orderBy: { order: "asc" },
-      },
-      interlinksFrom: {
-        include: {
-          to: true,
+  let page = null;
+  try {
+    page = await prisma.localityPage.findUnique({
+      where: {
+        country_city_district_locality: {
+          country: country.toLowerCase(),
+          city: city.toLowerCase(),
+          district: district.toLowerCase(),
+          locality: locality.toLowerCase(),
         },
       },
-    },
-  });
+      include: {
+        faqs: {
+          orderBy: { order: "asc" },
+        },
+        interlinksFrom: {
+          include: {
+            to: true,
+          },
+        },
+      },
+    });
+  } catch (err) {
+    console.error("Error fetching locality detail page:", err);
+  }
 
   if (!page || (page.status !== "PUBLISHED" && !isPreview)) {
     notFound();

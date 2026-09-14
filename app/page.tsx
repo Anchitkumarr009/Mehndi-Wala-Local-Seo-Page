@@ -10,10 +10,15 @@ import { MapPin, ArrowRight, ShieldCheck, Sparkles, Star } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const pages = await prisma.localityPage.findMany({
-    where: { status: "PUBLISHED" },
-    orderBy: { localityLabel: "asc" },
-  });
+  let pages: any[] = [];
+  try {
+    pages = await prisma.localityPage.findMany({
+      where: { status: "PUBLISHED" },
+      orderBy: { localityLabel: "asc" },
+    });
+  } catch (error) {
+    console.error("Error fetching locality pages on home:", error);
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-parchment">
