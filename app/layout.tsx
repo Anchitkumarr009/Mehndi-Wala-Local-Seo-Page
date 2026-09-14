@@ -16,7 +16,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.baseUrl),
+  metadataBase: new URL("https://www.mehndiwalaa.com"),
   title: {
     default: "Mehndi Wala — Verified Bridal & Guest Mehndi Artists",
     template: "%s | Mehndi Wala",

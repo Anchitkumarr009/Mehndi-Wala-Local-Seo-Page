@@ -4,6 +4,9 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MapPin, ArrowLeft, Home } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default function NotFound() {
   return (
     <div className="flex flex-col min-h-screen bg-parchment">
