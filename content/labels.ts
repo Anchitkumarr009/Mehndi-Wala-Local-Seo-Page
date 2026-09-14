@@ -2,7 +2,7 @@ export const siteConfig = {
   name: "Mehndi Wala",
   tagline: "VERIFIED LOCAL ARTISTS",
   domain: "www.mehndiwalaa.com",
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://www.mehndiwalaa.com",
+  baseUrl: process.env.BASE_URL || "https://www.mehndiwalaa.com",
   supportEmail: "support@mehndiwalaa.com",
   phoneDisplay: "+91 98XXXXXXXX",
   phoneTel: "tel:+919800000000",
