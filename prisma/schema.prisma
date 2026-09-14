@@ -1,0 +1,75 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model LocalityPage {
+  id              String   @id @default(cuid())
+  country         String   // slug, e.g. "india"
+  city            String   // slug, e.g. "delhi"
+  district        String   // slug, e.g. "east-delhi"
+  locality        String   // slug, e.g. "anand-vihar"
+  countryLabel    String   // display, e.g. "India"
+  cityLabel       String   // "Delhi"
+  districtLabel   String   // "East Delhi"
+  localityLabel   String   // "Anand Vihar"
+
+  metaTitle       String
+  metaDescription String
+  h1              String
+  dek             String?           // one-line subtitle under H1
+  heroImageUrl    String?
+  heroImageAlt    String?
+
+  bodyHtml        String            // sanitized HTML from Tiptap
+  bodyJson        String?           // raw Tiptap JSON string for re-editing
+
+  status          String   @default("DRAFT") // DRAFT, PUBLISHED
+  publishedAt     DateTime?
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  // Optional local business & display fields for JSON-LD & UI chips
+  streetAddress   String?
+  latitude        Float?
+  longitude       Float?
+  ratingValue     Float?   @default(4.8)
+  reviewCount     Int?     @default(210)
+  readTime        String?  @default("11 min read")
+
+  // Locality-specific Quick Price Estimator fields
+  priceGuest      String?  @default("₹250 - ₹500")
+  priceParty      String?  @default("₹1,000 - ₹3,500")
+  priceBridal     String?  @default("₹5,000 - ₹15,000")
+  priceDisclaimer String?  @default("(Prices vary by travel time/agreed upfront before booking)")
+
+  faqs            Faq[]
+
+  interlinksFrom  LocalityInterlink[] @relation("from")
+  interlinksTo    LocalityInterlink[] @relation("to")
+
+  @@unique([country, city, district, locality])
+}
+
+model Faq {
+  id             String       @id @default(cuid())
+  question       String
+  answer         String
+  order          Int          @default(0)
+  localityPageId String
+  localityPage   LocalityPage @relation(fields: [localityPageId], references: [id], onDelete: Cascade)
+}
+
+model LocalityInterlink {
+  id           String       @id @default(cuid())
+  fromId       String
+  toId         String
+  from         LocalityPage @relation("from", fields: [fromId], references: [id], onDelete: Cascade)
+  to           LocalityPage @relation("to", fields: [toId], references: [id], onDelete: Cascade)
+
+  @@unique([fromId, toId])
+}

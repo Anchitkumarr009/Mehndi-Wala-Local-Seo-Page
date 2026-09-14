@@ -1,0 +1,95 @@
+export const siteConfig = {
+  name: "Mehndi Wala",
+  tagline: "VERIFIED LOCAL ARTISTS",
+  domain: "www.mehndiwalaa.com",
+  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://www.mehndiwalaa.com",
+  supportEmail: "support@mehndiwalaa.com",
+  phoneDisplay: "+91 98XXXXXXXX",
+  phoneTel: "tel:+919800000000",
+  whatsappUrl: "https://wa.me/919800000000?text=Hi%20Mehndi%20Wala%2C%20I%20want%20to%20book%20a%20verified%20artist",
+};
+
+export const uiLabels = {
+  header: {
+    callBtn: "Call Us",
+    seeArtistsBtn: "Find Artists",
+  },
+  kicker: {
+    localGuideBadge: "LOCAL GUIDE",
+    editorialByline: "Mehndi Wala Editorial",
+    verifiedBadge: "Verified Local Intel",
+    defaultRating: "4.8 / 5.0",
+  },
+  sidebar: {
+    tocTitle: "INSIDE THIS GUIDE",
+    pricingEstimator: {
+      kicker: "QUICK ESTIMATOR",
+      titleSuffix: "Pricing Gauge",
+      guestTier: "Simple / Guest Hand",
+      guestPrice: "₹250 - ₹500",
+      semiTier: "Semi-Bridal / Party",
+      semiPrice: "₹1,000 - ₹3,500",
+      bridalTier: "Full Bridal Package",
+      bridalPrice: "₹5,000 - ₹15,000",
+      disclaimer: "(Prices vary by travel time/agreed upfront before booking)",
+    },
+    urgentCard: {
+      title: "Need Urgent Booking?",
+      descriptionPrefix: "Functions in",
+      descriptionSuffix: "happening in under 48 hours",
+      cta: "CHECK ACTIVE ARTISTS",
+    },
+  },
+  rightCards: {
+    availability: {
+      title: "DATE AVAILABILITY CHECK",
+      descriptionPrefix: "Planning a function in",
+      descriptionSuffix: "? Check the slots for upcoming festival dates.",
+      functionDateLabel: "FUNCTION DATE",
+      occasionLabel: "OCCASION TYPE",
+      btnLabel: "CHECK ARTIST SLOTS",
+    },
+    partner: {
+      badge: "ARTIST PARTNER PROGRAM",
+      titlePrefix: "Are you a Mehndi Artist in",
+      titleSuffix: "?",
+      description: "Get verified, list your portfolio, and receive genuine client leads with upfront pricing protection.",
+      cta: "APPLY TO JOIN MEHNDIWALA",
+    },
+    feedback: {
+      title: "WAS THIS GUIDE HELPFUL?",
+      yes: "👍 Yes",
+      needsMore: "👎 Needs more",
+    },
+  },
+  faq: {
+    kicker: "COMMON INQUIRIES",
+    title: "Frequently Asked Questions",
+    toggleAll: "TOGGLE ALL",
+  },
+  interlinkCard: {
+    titlePrefix: "Mehndi artists in",
+    guideLinkSuffix: "Hub",
+    emptyStateTitle: "No artists listed here yet",
+    emptyStateDescPrefix: "We're actively onboarding mehndi artists in",
+    emptyStateDescSuffix: ". Browse everyone on the platform in the meantime.",
+    browseAllBtn: "BROWSE ALL ARTISTS",
+    notifyBtn: "NOTIFY ME WHEN LIVE",
+    exploreNearby: "EXPLORE NEARBY AREAS:",
+    viewMapSuffix: "Map",
+  },
+  footer: {
+    blurb: "Direct-booking marketplace for verified mehndi artists across Delhi NCR. Know your artist, your design and your price before you pay.",
+    nearbyColumn: "Nearby Localities",
+    exploreColumn: "Curated Guides",
+    artistColumn: "Artist Network",
+    artistCta: "REGISTER AS ARTIST",
+    copyrightSuffix: "Mehndi Wala — mehndiwalaa.com",
+    privacy: "Privacy Policy",
+    codeOfConduct: "Artist Code of Conduct",
+    terms: "Terms of Booking",
+  },
+  mobileBar: {
+    cta: "💬 WhatsApp for Quick Availability Check",
+  },
+};
