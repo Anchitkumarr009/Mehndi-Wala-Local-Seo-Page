@@ -29,18 +29,18 @@ export default async function PagesListPage() {
     console.error("Error fetching locality pages in dashboard:", err);
   }
 
-  const formattedPages = pages.map((p) => ({
+  const formattedPages = (pages || []).map((p) => ({
     id: p.id,
-    localityLabel: p.localityLabel,
-    districtLabel: p.districtLabel,
-    cityLabel: p.cityLabel,
-    countryLabel: p.countryLabel,
-    canonicalPath: buildCanonicalPath(p.country, p.city, p.district, p.locality),
-    status: p.status,
-    updatedAt: p.updatedAt.toISOString(),
-    publishedAt: p.publishedAt ? p.publishedAt.toISOString() : null,
-    faqCount: p._count.faqs,
-    interlinkCount: p._count.interlinksFrom,
+    localityLabel: p.localityLabel || "",
+    districtLabel: p.districtLabel || "",
+    cityLabel: p.cityLabel || "",
+    countryLabel: p.countryLabel || "",
+    canonicalPath: buildCanonicalPath(p.country || "india", p.city || "delhi", p.district || "", p.locality || ""),
+    status: p.status || "DRAFT",
+    updatedAt: p.updatedAt ? (p.updatedAt instanceof Date ? p.updatedAt.toISOString() : String(p.updatedAt)) : new Date().toISOString(),
+    publishedAt: p.publishedAt ? (p.publishedAt instanceof Date ? p.publishedAt.toISOString() : String(p.publishedAt)) : null,
+    faqCount: p._count?.faqs || 0,
+    interlinkCount: p._count?.interlinksFrom || 0,
   }));
 
   return (
