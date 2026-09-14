@@ -1,13 +1,20 @@
 import React from "react";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { buildCanonicalPath } from "@/lib/utils";
-import { PlusCircle, Search, FileEdit, Copy, Trash2, ExternalLink, Globe } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 import { LocalityPagesTable } from "@/components/dashboard/LocalityPagesTable";
 
 export const dynamic = "force-dynamic";
 
 export default async function PagesListPage() {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/dashboard/login");
+  }
   let pages: any[] = [];
   try {
     pages = await prisma.localityPage.findMany({

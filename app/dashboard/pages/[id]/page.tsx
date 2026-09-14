@@ -1,5 +1,7 @@
 import React from "react";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { LocalityPageEditor } from "@/components/dashboard/editor/LocalityPageEditor";
 
@@ -12,6 +14,11 @@ interface EditPageProps {
 export const dynamic = "force-dynamic";
 
 export default async function EditLocalityPage({ params }: EditPageProps) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/dashboard/login");
+  }
+
   const { id } = params;
 
   const page = await prisma.localityPage.findUnique({
