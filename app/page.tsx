@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { MapPin, ArrowRight, ShieldCheck, Sparkles, Star } from "lucide-react";
 
-export const revalidate = 60; // ISR cache
+export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const pages = await prisma.localityPage.findMany({
