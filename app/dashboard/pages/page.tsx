@@ -8,14 +8,19 @@ import { LocalityPagesTable } from "@/components/dashboard/LocalityPagesTable";
 export const dynamic = "force-dynamic";
 
 export default async function PagesListPage() {
-  const pages = await prisma.localityPage.findMany({
-    orderBy: { updatedAt: "desc" },
-    include: {
-      _count: {
-        select: { faqs: true, interlinksFrom: true },
+  let pages: any[] = [];
+  try {
+    pages = await prisma.localityPage.findMany({
+      orderBy: { updatedAt: "desc" },
+      include: {
+        _count: {
+          select: { faqs: true, interlinksFrom: true },
+        },
       },
-    },
-  });
+    });
+  } catch (err) {
+    console.error("Error fetching locality pages in dashboard:", err);
+  }
 
   const formattedPages = pages.map((p) => ({
     id: p.id,

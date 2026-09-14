@@ -28,8 +28,7 @@ export default function LoginPage() {
       if (res?.error) {
         setError("Invalid email or password. Please try again.");
       } else {
-        router.push("/dashboard/pages");
-        router.refresh();
+        window.location.href = "/dashboard/pages";
       }
     } catch (err) {
       setError("An unexpected error occurred. Please try again.");

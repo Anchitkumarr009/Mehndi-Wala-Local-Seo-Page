@@ -25,10 +25,10 @@ export const DashboardNavbar: React.FC = () => {
             </span>
           </Link>
 
-          <nav className="hidden sm:flex items-center gap-2">
+          <nav className="flex items-center gap-1.5 sm:gap-2">
             <Link
               href="/dashboard/pages"
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-sharp transition-colors ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold rounded-sharp transition-colors ${
                 pathname === "/dashboard/pages"
                   ? "bg-parchment text-stain border border-line"
                   : "text-ink-soft hover:text-ink hover:bg-parchment"
@@ -40,7 +40,7 @@ export const DashboardNavbar: React.FC = () => {
 
             <Link
               href="/dashboard/pages/new"
-              className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-sharp transition-colors ${
+              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold rounded-sharp transition-colors ${
                 pathname === "/dashboard/pages/new"
                   ? "bg-parchment text-stain border border-line"
                   : "text-ink-soft hover:text-ink hover:bg-parchment"
