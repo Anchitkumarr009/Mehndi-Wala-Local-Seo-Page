@@ -11,6 +11,10 @@ export const DashboardNavbar: React.FC = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
 
+  if (pathname === "/dashboard/login") {
+    return null;
+  }
+
   return (
     <header className="bg-card border-b border-line sticky top-0 z-30 shadow-sm">
       <div className="max-w-wrap mx-auto px-6 py-3.5 flex items-center justify-between gap-4">

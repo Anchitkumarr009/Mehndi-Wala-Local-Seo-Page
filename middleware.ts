@@ -8,5 +8,8 @@ export default withAuth({
 });
 
 export const config = {
-  matcher: ["/dashboard/((?!login).*)", "/dashboard"],
+  matcher: [
+    "/dashboard/pages",
+    "/dashboard/pages/:path*",
+  ],
 };
